@@ -3,11 +3,6 @@
     margin:0;
     box-sizing: border-box;
 }
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
 
 body {
     font-family: 'Roboto', sans-serif;
@@ -345,9 +340,6 @@ body {
     margin-left:193px
 
 }
-#btn2{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-}
+
+
+
