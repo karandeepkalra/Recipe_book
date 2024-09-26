@@ -202,7 +202,6 @@ h1 {
 .recipe-card .btn:hover {
     background: #c0392b;
 }
-
 .modal {
     display: none;
     position: fixed;
@@ -218,12 +217,22 @@ h1 {
 
 .modal-content {
     background-color: #fff;
-    margin: 10% auto;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     padding: 30px;
     border-radius: 15px;
     width: 80%;
     max-width: 600px;
+    max-height: 80vh;
+    overflow-y: auto;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+form {
+    display: flex;
+    flex-direction: column;
 }
 
 .close {
@@ -241,10 +250,7 @@ h1 {
     cursor: pointer;
 }
 
-form {
-    display: flex;
-    flex-direction: column;
-}
+
 
 form input, form textarea {
     margin-bottom: 15px;
@@ -298,3 +304,7 @@ form button[type="submit"]:hover {
         margin: 20% auto;
     }
 }
+
+
+
+
