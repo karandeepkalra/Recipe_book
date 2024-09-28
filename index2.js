@@ -53,15 +53,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
     recipeForm.onsubmit = (e) => {
         e.preventDefault();
-          
-    const recipeName = document.getElementById('recipeName').value.trim();
-    const ingredients = document.getElementById('ingredients').value.trim();
-    const instructions = document.getElementById('instructions').value.trim();
-    
-    if (recipeName === '' || ingredients === '' || instructions === '') {
-        alert('Please fill out all fields with valid content.');
-        return;
-    }
+
+        const recipeName = document.getElementById('recipeName').value.trim();
+        const ingredients = document.getElementById('ingredients').value.trim();
+        const instructions = document.getElementById('instructions').value.trim();
+
+        if (recipeName === '' || ingredients === '' || instructions === '') {
+            alert('Please fill out all fields with valid content.');
+            return;
+        }
 
         const recipe = {
             name: document.getElementById('recipeName').value,
