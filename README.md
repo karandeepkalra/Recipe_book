@@ -31,7 +31,10 @@ A simple yet powerful Recipe Management application that allows users to search 
 
 7. **Recipe Categorization:**  
    Organize your recipes by category, such as appetizers, main courses, desserts, etc.
-
+   
+8. **User Authentication:**
+   Implement a fully functional signup and login system to manage user accounts, allowing personalized recipe storage.
+   
 ## **Technologies Used**
 - **HTML**  
 - **CSS**  
@@ -51,6 +54,11 @@ A simple yet powerful Recipe Management application that allows users to search 
 2. Navigate to cd Recipe_book and open index.html
 
 ## **Usage**
+### Signup/Login:
+-**Creating an Account:**
+ - Click on the "Sign Up" button, fill in the required fields (username, email, password), and submit to create a new account.
+  **Logging In:**
+ - Enter your credentials in the login form and click "Login" to access your personalized recipe management features.
 
 ### Searching for Recipes:
 - Enter a dish name in the search box and click the search button.
@@ -75,6 +83,9 @@ A simple yet powerful Recipe Management application that allows users to search 
 - **openRecipePopup(meal):** Displays a popup with detailed information about the selected recipe.
 - **renderRecipes():** Renders the custom recipes stored in local storage.
 - **saveRecipes():** Saves the current recipes array to local storage.
+- **signup(userData):** Handles user signup and stores user credentials.
+- **login(userData):** Authenticates users and retrieves their saved recipes.
+
 
 ### Event Listeners
 Event listeners for searching recipes, adding/editing custom recipes, and closing modals are implemented for a seamless user experience.
