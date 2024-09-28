@@ -16,7 +16,7 @@
     </div>
 
     <div class="button-container">
-        <button class="action-button" id="signupButton"><a class="text" href="signup.html">Sign Up</a></button>
+        <!-- <button class="action-button" id="signupButton"><a class="text" href="signup.html">Sign Up</a></button> -->
         <button class="action-button" id="addRecipeButton"><a class="text" href="index2.html">Add New</a></button>
     </div>
     <div class="hero">
@@ -306,9 +306,9 @@
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             const urlParams = new URLSearchParams(window.location.search);
-            const username = urlParams.get('username');
-            if (username) {
-                document.getElementById('username').textContent = username;
+            const email = urlParams.get('email'); // Get the email parameter from the URL
+            if (email) {
+                document.getElementById('username').textContent = email; // Set the username to the email
             }
         });
     </script>
