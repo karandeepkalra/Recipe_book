@@ -4,37 +4,226 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <title>Vibrant Login/Sign Up Page</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-image: url('https://images.unsplash.com/photo-1495195134817-aeb325a55b65?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: #333;
+            line-height: 1.6;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 400px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #e74c3c;
+            margin-bottom: 1.5rem;
+            font-size: 32px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 1rem;
+            border: none;
+            border-radius: 5px;
+            background-color: #f0f0f0;
+            transition: background-color 0.3s;
+            font-size: 16px;
+        }
+
+        input:focus {
+            background-color: #e0e0e0;
+            outline: none;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 25px;
+            background-color: #e74c3c;
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        button:hover {
+            background-color: #c0392b;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .message {
+            text-align: center;
+            margin-top: 1rem;
+            color: #333;
+            font-size: 16px;
+        }
+
+        .toggle-form {
+            text-align: center;
+            margin-top: 1rem;
+            color: #e74c3c;
+            cursor: pointer;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        .toggle-form:hover {
+            color: #c0392b;
+            text-decoration: underline;
+        }
+
+        @media screen and (max-width: 768px) {
+            .container {
+                padding: 30px;
+            }
+
+            h2 {
+                font-size: 28px;
+            }
+
+            input,
+            button {
+                font-size: 14px;
+            }
+        }
+    </style>
 </head>
 
 <body>
-    <header>
-        <nav>
-            <h1>Recipe App</h1>
-            <form id="searchForm">
-                <input type="text" class="searchbox" placeholder="Search for recipes">
-                <button type="submit" class="searchbtn">Search</button>
-            </form>
-        </nav>
-    </header>
-    <main>
-        <section>
-            <div class="recipe_container">
-                <h2>Search your favourite recipe</h2>
-            </div>
-            <div class="overlay" style="display: none;"></div>
-            <div class="recipe-details">
-                <button type="button" class="recipe-close-button">
-                    <i class="fa-solid fa-xmark"></i>
-                </button>
-                <div class="recipe-details-content">
-                </div>
-            </div>
-        </section>
-    </main>
-    <script src="index.js" defer></script>
+    <div class="container">
+        <h2 id="formTitle">Login</h2>
+        <form id="authForm">
+            <input type="email" id="email" placeholder="Email" required>
+            <input type="password" id="password" placeholder="Password" required>
+            <button type="submit" id="submitButton">Login</button>
+        </form>
+        <p class="message" id="message"></p>
+        <p class="toggle-form" id="toggleForm">Don't have an account? Sign Up</p>
+    </div>
+
+    <script>
+        let isLoginForm = true;
+        const formTitle = document.getElementById('formTitle');
+        const submitButton = document.getElementById('submitButton');
+        const toggleForm = document.getElementById('toggleForm');
+        const authForm = document.getElementById('authForm');
+        const message = document.getElementById('message');
+
+        function toggleFormType() {
+            isLoginForm = !isLoginForm;
+            formTitle.textContent = isLoginForm ? 'Login' : 'Sign Up';
+            submitButton.textContent = isLoginForm ? 'Login' : 'Sign Up';
+            toggleForm.textContent = isLoginForm ? "Don't have an account? Sign Up" : "Already have an account? Login";
+            message.textContent = '';
+        }
+
+        toggleForm.addEventListener('click', toggleFormType);
+
+        function validateInput(input) {
+            return input.trim() !== '';
+        }
+
+        function validateEmail(email) {
+            const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return regex.test(email);
+        }
+
+        function validatePassword(password) {
+            const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/;
+            return regex.test(password);
+        }
+
+        authForm.addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            if (!validateInput(email) || !validateInput(password)) {
+                message.textContent = 'All fields are required.';
+                message.style.color = '#ff6b6b';
+                return;
+            }
+
+            if (!isLoginForm && !validateEmail(email)) {
+                message.textContent = 'Please enter a valid email.';
+                message.style.color = '#ff6b6b';
+                return;
+            }
+
+            if (!isLoginForm && !validatePassword(password)) {
+                message.textContent = 'Password must be at least 8 characters long and include an uppercase letter, a lowercase letter, a number, and a special character.';
+                message.style.color = '#ff6b6b';
+                return;
+            }
+
+            let users = JSON.parse(localStorage.getItem('users')) || [];
+            const existingUser = users.find(u => u.email === email);
+
+            if (isLoginForm) {
+                if (existingUser) {
+                    if (existingUser.password === password) {
+                        message.textContent = 'Login successful!';
+                        message.style.color = '#4ecdc4';
+                        setTimeout(() => {
+                            window.location.href = `index1.html?email=${encodeURIComponent(email)}`;
+                        }, 1500);
+                    } else {
+                        message.textContent = 'Invalid email or password.';
+                        message.style.color = '#ff6b6b';
+                    }
+                } else {
+                    message.textContent = 'No account found with that email. Please sign up.';
+                    message.style.color = '#ff6b6b';
+                }
+            } else {
+                if (existingUser) {
+                    message.textContent = 'Email already exists. Please choose another.';
+                    message.style.color = '#ff6b6b';
+                } else {
+                    users.push({ email, password });
+                    localStorage.setItem('users', JSON.stringify(users));
+                    message.textContent = 'Sign up successful! You can now log in.';
+                    message.style.color = '#4ecdc4';
+                    toggleFormType();
+                }
+            }
+            document.getElementById('email').value = '';
+            document.getElementById('password').value = '';
+        });
+    </script>
 </body>
 
 </html>
